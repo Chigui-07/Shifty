@@ -76,3 +76,9 @@ Motor, plataforma, controles, estética, interfaz, diseño de Dany y personajes 
 - Se definieron colores de dificultad, estrellas (incluida Pesadilla infernal de **15**), calidades, martillos y efectos visuales exclusivos de las caras.
 - Se añadieron **animaciones de llamas** para Legendario y Mítico.
 - Próximo paso: diseñar identidad visual, Dany y la primera experiencia jugable antes de implementar los sistemas online.
+
+### 2026-10-09 — Diseño provisional de Dany y expresiones
+- **Dany (boceto 02, no definitivo):** cuerpo cuadrado redondeado y equilibrado, color #E8E8E8, ojos ovalados más juntos, solo piernas largas, contorno oscuro marcado y sonrisa suave.
+- Otras formas geométricas quedan reservadas como posibilidades para **futuros personajes**, no como transformaciones cosméticas de Dany.
+- La tienda podrá vender **algunas expresiones y algunos colores**; no todos estarán a la venta.
+- **Expresiones activables:** mediante una tecla se abre un menú pequeño con las expresiones que el jugador posee; elige una y el personaje la muestra. Se contempla su uso comunicativo en un **futuro multijugador**. Tecla, duración, interrupciones y catálogo exacto aún pendientes.
