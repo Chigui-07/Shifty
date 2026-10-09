@@ -159,3 +159,9 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Dany se orienta visualmente según la gravedad, salta en la dirección correspondiente y puede apoyarse en la cara inferior de plataformas y en un techo exclusivo del Laboratorio.
 - Las pociones Mini y Gravedad pueden coexistir; el Nivel 1 oficial no recibió cambios de geometría ni mecánicas.
 - Pendiente: prueba manual en navegador, especialmente colisiones invertidas, saltos y acceso a la meta.
+
+### 2026-10-09 — SHIFTY 0.11: gravedad amarilla
+- Decisión definitiva de color: la **Poción de Gravedad es amarilla**, mientras la Poción Mini continúa verde. Se actualizaron frasco, iconos y etiquetas de gravedad.
+- Laboratorio: indicador visible de gravedad normal/invertida en HUD y aviso amarillo en pantalla mientras la gravedad está invertida.
+- Nivel 1 sigue congelado: sin modificaciones de recorrido ni obstáculos.
+- Pendiente: probar visualmente en navegador y validar física invertida antes de sumar más mecánicas.
