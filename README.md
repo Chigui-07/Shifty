@@ -152,3 +152,10 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Se agregaron partículas al recoger pociones y etiquetas dinámicas en el botón.
 - Nivel 1 permanece congelado, sin cambios en sus plataformas, obstáculos ni mecánicas.
 - Pendiente: comprobar la actualización en navegador y evolucionar el inventario para múltiples tipos de pociones.
+
+### 2026-10-09 — SHIFTY 0.10: gravedad experimental
+- Laboratorio: segunda poción morada coleccionable de gravedad en x=550, con contador separado del inventario Mini.
+- F o botón Gravedad consume la poción al invertir la gravedad; volver a la normalidad no devuelve la unidad (mecánica provisional).
+- Dany se orienta visualmente según la gravedad, salta en la dirección correspondiente y puede apoyarse en la cara inferior de plataformas y en un techo exclusivo del Laboratorio.
+- Las pociones Mini y Gravedad pueden coexistir; el Nivel 1 oficial no recibió cambios de geometría ni mecánicas.
+- Pendiente: prueba manual en navegador, especialmente colisiones invertidas, saltos y acceso a la meta.
