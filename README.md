@@ -125,3 +125,9 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Se añadió menú de **pausa** con Continuar, Reiniciar y Menú principal, activable con Escape o botón.
 - El nivel no avanza mientras el usuario está en los menús.
 - Pendiente: verificar la navegación en navegador, mejorar arte y definir las secciones definitivas del menú.
+
+### 2026-10-09 — SHIFTY 0.6: progreso y final de nivel
+- Barra visual de avance sincronizada con el porcentaje, desde 0 % en la posición inicial.
+- Pantalla de victoria con tiempo e intentos, opciones de repetir, volver al selector de niveles o al menú principal.
+- El laboratorio sigue siendo el único nivel jugable; el primer nivel oficial se desarrollará aparte.
+- Pendiente: comprobar las pantallas en navegador y diseñar el primer nivel oficial.
