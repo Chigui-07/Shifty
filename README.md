@@ -82,3 +82,7 @@ Motor, plataforma, controles, estética, interfaz, diseño de Dany y personajes 
 - Otras formas geométricas quedan reservadas como posibilidades para **futuros personajes**, no como transformaciones cosméticas de Dany.
 - La tienda podrá vender **algunas expresiones y algunos colores**; no todos estarán a la venta.
 - **Expresiones activables:** mediante una tecla se abre un menú pequeño con las expresiones que el jugador posee; elige una y el personaje la muestra. Se contempla su uso comunicativo en un **futuro multijugador**. Tecla, duración, interrupciones y catálogo exacto aún pendientes.
+
+### 2026-10-09 — Duración de las expresiones
+- **Confirmado:** las expresiones seleccionadas desde el menú se muestran durante unos segundos y luego el personaje recupera automáticamente su expresión normal.
+- **Pendiente:** duración exacta; 3 segundos es una propuesta de prueba, no una decisión definitiva.
