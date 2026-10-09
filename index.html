@@ -18,12 +18,12 @@ kbd{background:#344661;border-radius:5px;padding:2px 6px}button{font:inherit;col
 </style></head>
 <body><main>
 <header><div><h1>SHIFTY <small>0.1</small></h1><small>Prototipo jugable · Dany</small></div><button id="reset">↻ Reiniciar nivel</button></header>
-<section class="panel"><div class="hud"><span id="attempts">Intentos: 1</span><span id="status">Llega a la bandera ✦</span><span id="time">00:00</span></div>
+<section class="panel"><div class="hud"><span id="attempts">Intentos: 1</span><span id="status">Recoge la poción y llega a la bandera ✦</span><span id="time">00:00</span></div>
 <div class="game"><canvas id="game" width="960" height="540" aria-label="Nivel de plataformas SHIFTY"></canvas>
 <div id="emotes"><strong>Expresiones de Dany</strong><div class="emote-grid"><button data-emote="happy">😄 Feliz</button><button data-emote="wow">😮 Sorpresa</button><button data-emote="wink">😉 Guiño</button></div><button id="closeEmotes">Cerrar</button></div></div>
-<div class="controls"><div><button data-key="left">◀</button> <button data-key="right">▶</button> <button data-key="jump">⤒ Saltar</button></div><div><button id="emoteBtn">☺ Expresiones</button></div></div>
+<div class="controls"><div><button data-key="left">◀</button> <button data-key="right">▶</button> <button data-key="jump">⤒ Saltar</button></div><div><button id="potionBtn">🧪 Usar poción (Q)</button> <button id="emoteBtn">☺ Expresiones</button></div></div>
 </section>
-<p><b>Controles:</b> <kbd>A</kbd>/<kbd>←</kbd> y <kbd>D</kbd>/<kbd>→</kbd> para moverte; <kbd>Espacio</kbd>/<kbd>W</kbd>/<kbd>↑</kbd> para saltar; <kbd>E</kbd> para expresiones; <kbd>R</kbd> para reiniciar. También hay botones táctiles.</p>
+<p><b>Controles:</b> <kbd>A</kbd>/<kbd>←</kbd> y <kbd>D</kbd>/<kbd>→</kbd> para moverte; <kbd>Espacio</kbd>/<kbd>W</kbd>/<kbd>↑</kbd> para saltar; <kbd>Q</kbd> para usar la poción y volver al tamaño normal; <kbd>E</kbd> para expresiones; <kbd>R</kbd> para reiniciar. También hay botones táctiles.</p>
 </main>
 <script>
 "use strict";
@@ -31,17 +31,20 @@ const canvas=document.querySelector("#game"),ctx=canvas.getContext("2d");
 const attemptsEl=document.querySelector("#attempts"),statusEl=document.querySelector("#status"),timeEl=document.querySelector("#time"),menu=document.querySelector("#emotes");
 const W=960,H=540,worldW=2520,groundY=466,keys={left:false,right:false,jump:false};
 const platforms=[{x:0,y:groundY,w:370,h:80},{x:480,y:groundY,w:390,h:80},{x:980,y:groundY,w:340,h:80},{x:1420,y:groundY,w:420,h:80},{x:1930,y:groundY,w:590,h:80},{x:270,y:365,w:130,h:20},{x:585,y:350,w:150,h:20},{x:795,y:295,w:120,h:20},{x:1100,y:355,w:125,h:20},{x:1540,y:350,w:150,h:20},{x:1760,y:310,w:120,h:20},{x:2110,y:360,w:170,h:20}];
+const potions=[{x:220,y:groundY-38,taken:false}];
+const tunnels=[{x:1290,y:groundY-41,w:105,h:41}];
 const hazards=[{x:690,y:442,w:38,h:24},{x:1175,y:442,w:38,h:24},{x:1615,y:442,w:38,h:24},{x:2240,y:442,w:38,h:24}];
-let attempts=1,elapsed=0,won=false,camera=0,last=performance.now(),jumpHeld=false,emote="",emoteTimer=0,particles=[];
+let attempts=1,elapsed=0,won=false,camera=0,last=performance.now(),jumpHeld=false,emote="",emoteTimer=0,particles=[],smallCount=0,small=false;
 const player={x:64,y:groundY-70,w:55,h:70,vx:0,vy:0,onGround:false,anim:0};
-function reset(count=true){if(count)attempts++;Object.assign(player,{x:64,y:groundY-70,vx:0,vy:0,onGround:false,anim:0});camera=0;elapsed=0;won=false;emote="";emoteTimer=0;particles=[];attemptsEl.textContent="Intentos: "+attempts;statusEl.textContent="Llega a la bandera ✦";menu.classList.remove("show");}
+function reset(count=true){if(count)attempts++;small=false;smallCount=0;potions.forEach(p=>p.taken=false);player.h=70;player.w=55;Object.assign(player,{x:64,y:groundY-70,vx:0,vy:0,onGround:false,anim:0});camera=0;elapsed=0;won=false;emote="";emoteTimer=0;particles=[];attemptsEl.textContent="Intentos: "+attempts;statusEl.textContent="Llega a la bandera ✦ · Poción: 0";menu.classList.remove("show");}
 document.querySelector("#reset").onclick=()=>reset(false);
 function toggleEmotes(){menu.classList.toggle("show");keys.left=keys.right=keys.jump=false}
-document.querySelector("#emoteBtn").onclick=toggleEmotes;document.querySelector("#closeEmotes").onclick=()=>menu.classList.remove("show");
+document.querySelector("#potionBtn").onclick=usePotion;document.querySelector("#emoteBtn").onclick=toggleEmotes;document.querySelector("#closeEmotes").onclick=()=>menu.classList.remove("show");
 document.querySelectorAll("[data-emote]").forEach(b=>b.onclick=()=>{emote=b.dataset.emote;emoteTimer=3;menu.classList.remove("show")});
+function usePotion(){if(won||menu.classList.contains("show"))return;if(small){const newW=55,newH=70;const center=player.x+player.w/2;const next={x:center-newW/2,y:player.y+player.h-newH,w:newW,h:newH};if(platforms.some(p=>overlap(next,p))||tunnels.some(t=>overlap(next,t))){statusEl.textContent="¡Sal del túnel antes de crecer!";return}Object.assign(player,next);small=false;statusEl.textContent="Tamaño normal · Poción: "+smallCount;return}if(smallCount<1)return;smallCount--;const feet=player.y+player.h,center=player.x+player.w/2;player.w=30;player.h=38;player.x=center-player.w/2;player.y=feet-player.h;small=true;statusEl.textContent="¡Dany pequeño! · Poción: "+smallCount}
 function setKey(key,on){if(key==="left"||key==="right"||key==="jump")keys[key]=on}
 const keyMap={ArrowLeft:"left",KeyA:"left",ArrowRight:"right",KeyD:"right",ArrowUp:"jump",KeyW:"jump",Space:"jump"};
-addEventListener("keydown",e=>{if(keyMap[e.code]){e.preventDefault();setKey(keyMap[e.code],true)}if(e.repeat)return;if(e.code==="KeyE")toggleEmotes();if(e.code==="KeyR")reset(false)});
+addEventListener("keydown",e=>{if(keyMap[e.code]){e.preventDefault();setKey(keyMap[e.code],true)}if(e.repeat)return;if(e.code==="KeyE")toggleEmotes();if(e.code==="KeyR")reset(false);if(e.code==="KeyQ")usePotion()});
 addEventListener("keyup",e=>{if(keyMap[e.code]){e.preventDefault();setKey(keyMap[e.code],false)}});
 addEventListener("blur",()=>{keys.left=keys.right=keys.jump=false});
 document.querySelectorAll("[data-key]").forEach(b=>{const k=b.dataset.key;b.addEventListener("pointerdown",e=>{e.preventDefault();b.setPointerCapture(e.pointerId);setKey(k,true)});["pointerup","pointercancel","lostpointercapture"].forEach(t=>b.addEventListener(t,()=>setKey(k,false)))});
@@ -53,10 +56,12 @@ if(emoteTimer>0){emoteTimer-=dt;if(emoteTimer<=0)emote=""}
 const speed=260;player.vx=(Number(keys.right)-Number(keys.left))*speed;
 if(keys.jump&&!jumpHeld&&player.onGround){player.vy=-660;player.onGround=false;burst(player.x+28,player.y+67,5)}
 jumpHeld=keys.jump;
-const oldY=player.y;
+for(const p of potions){if(!p.taken&&overlap(player,{x:p.x-8,y:p.y-15,w:32,h:35})){p.taken=true;smallCount++;statusEl.textContent="Poción recogida · Pulsa Q · Inventario: "+smallCount}}
+const oldX=player.x,oldY=player.y;
 player.x=Math.max(0,Math.min(worldW-player.w,player.x+player.vx*dt));
+for(const t of tunnels){if(overlap(player,t)){player.x=oldX;player.vx=0}}
 player.vy=Math.min(950,player.vy+1700*dt);player.y+=player.vy*dt;player.onGround=false;
-for(const p of platforms){if(player.x+player.w>p.x&&player.x<p.x+p.w&&oldY+player.h<=p.y+6&&player.y+player.h>=p.y&&player.vy>=0){if(player.vy>250)burst(player.x+28,p.y,4);player.y=p.y-player.h;player.vy=0;player.onGround=true}}
+for(const p of [...platforms,...tunnels]){if(player.x+player.w>p.x&&player.x<p.x+p.w&&oldY+player.h<=p.y+6&&player.y+player.h>=p.y&&player.vy>=0){if(player.vy>250)burst(player.x+28,p.y,4);player.y=p.y-player.h;player.vy=0;player.onGround=true}}
 if(player.y>H+130||hazards.some(h=>overlap(player,h))){reset();return}
 if(player.x+player.w>=worldW-85&&player.onGround){won=true;statusEl.textContent="¡Nivel completado! 🎉";burst(player.x+28,player.y,40)}
 player.anim+=dt*(player.onGround?Math.abs(player.vx)/34:2);
@@ -67,9 +72,9 @@ function burst(x,y,n){for(let i=0;i<n;i++)particles.push({x,y,vx:(Math.random()-
 function rect(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(x,y,w,h)}
 function roundRect(x,y,w,h,r,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fillStyle=fill;ctx.fill();if(stroke){ctx.lineWidth=4;ctx.strokeStyle=stroke;ctx.stroke()}}
 function drawDany(){
-const x=player.x-camera,y=player.y;
+const x=player.x-camera,y=player.y;const scale=player.w/55;
 const walking=player.onGround&&Math.abs(player.vx)>0,step=walking?Math.sin(player.anim)*9:0;
-ctx.save();ctx.translate(x+player.w/2,y+player.h/2);
+ctx.save();ctx.translate(x+player.w/2,y+player.h/2);ctx.scale(scale,scale);
 if(!player.onGround)ctx.rotate(player.vy<0?-.055:.055);
 if(walking)ctx.rotate(Math.sin(player.anim)*.035);
 ctx.strokeStyle="#283345";ctx.lineWidth=7;ctx.lineCap="round";
@@ -90,6 +95,8 @@ const sky=ctx.createLinearGradient(0,0,0,H);sky.addColorStop(0,"#173354");sky.ad
 ctx.fillStyle="#ffffff17";for(let i=0;i<18;i++){const x=((i*193-camera*.17)%1150+1150)%1150-100,y=60+(i*83)%240;ctx.beginPath();ctx.arc(x,y,18+i%3*8,0,Math.PI*2);ctx.fill()}
 ctx.save();ctx.translate(-camera,0);
 for(const p of platforms){roundRect(p.x,p.y,p.w,p.h,6,"#354d65","#26384d");rect(p.x,p.y,p.w,9,"#66d2a0")}
+for(const t of tunnels){roundRect(t.x,t.y,t.w,t.h,3,"#627e9c","#253b51");rect(t.x+4,t.y+5,t.w-8,7,"#96b7d6")}
+for(const p of potions){if(!p.taken){roundRect(p.x-3,p.y-9,22,27,6,"#a3f4ff","#245875");rect(p.x+3,p.y-14,10,6,"#efffff");ctx.fillStyle="#156b92";ctx.font="bold 18px system-ui";ctx.fillText("↓",p.x+1,p.y+11)}}
 for(const h of hazards){ctx.fillStyle="#ff7777";ctx.beginPath();ctx.moveTo(h.x,h.y+h.h);ctx.lineTo(h.x+h.w/2,h.y);ctx.lineTo(h.x+h.w,h.y+h.h);ctx.closePath();ctx.fill()}
 rect(worldW-78,groundY-128,6,128,"#e8f3ff");ctx.fillStyle="#ffcb57";ctx.beginPath();ctx.moveTo(worldW-72,groundY-127);ctx.lineTo(worldW-14,groundY-107);ctx.lineTo(worldW-72,groundY-88);ctx.fill();
 ctx.restore();
