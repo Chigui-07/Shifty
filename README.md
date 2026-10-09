@@ -86,3 +86,15 @@ Motor, plataforma, controles, estética, interfaz, diseño de Dany y personajes 
 ### 2026-10-09 — Duración de las expresiones
 - **Confirmado:** las expresiones seleccionadas desde el menú se muestran durante unos segundos y luego el personaje recupera automáticamente su expresión normal.
 - **Pendiente:** duración exacta; 3 segundos es una propuesta de prueba, no una decisión definitiva.
+
+### 2026-10-09 — Feat: prototipo jugable 0.1
+- Se eligió **HTML5 + JavaScript Canvas** para la primera versión jugable.
+- Se creó `index.html` sin dependencias externas: nivel horizontal con cámara, plataformas, saltos, obstáculos, meta, intentos y cronómetro.
+- Dany usa el boceto provisional: cuadrado redondeado gris claro, ojos ovalados próximos, sonrisa suave y piernas animadas.
+- Animaciones iniciales mediante código: reposo, desplazamiento, salto, caída y aterrizaje (provisionales).
+- Menú de expresiones con **E** o botón, tres expresiones de prueba y duración de **3 segundos provisional**.
+- Controles: A/D o flechas, Espacio/W/flecha arriba, E para expresiones y R para reiniciar; botones táctiles.
+- **Pendiente:** probar en navegador real, ajustar físicas y arte, definir diseño final de Dany y construir siguientes mecánicas.
+
+## Ejecutar prototipo
+Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar nada. Para publicarlo en GitHub Pages: Settings → Pages → Deploy from a branch → main / root. La publicación aún debe configurarse y verificarse.
