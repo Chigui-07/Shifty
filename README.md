@@ -131,3 +131,10 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Pantalla de victoria con tiempo e intentos, opciones de repetir, volver al selector de niveles o al menú principal.
 - El laboratorio sigue siendo el único nivel jugable; el primer nivel oficial se desarrollará aparte.
 - Pendiente: comprobar las pantallas en navegador y diseñar el primer nivel oficial.
+
+### 2026-10-09 — SHIFTY 0.7: primer nivel oficial
+- Se añadió **Nivel 1: Primeros pasos**, seleccionable desde el menú junto al Laboratorio.
+- Nivel 1 introduce desplazamiento, saltos, plataformas, peligros y bandera; no tiene pociones.
+- El Laboratorio conserva su Poción Mini, obstáculos y recorrido original.
+- Ambos niveles comparten por ahora el motor, HUD y arte provisional; sus geometrías y peligros se cargan por separado.
+- Pendiente: pruebas reales de jugabilidad, ajustar dificultad, comprobar GitHub Pages y definir decoraciones.
