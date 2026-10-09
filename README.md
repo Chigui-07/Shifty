@@ -138,3 +138,9 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - El Laboratorio conserva su Poción Mini, obstáculos y recorrido original.
 - Ambos niveles comparten por ahora el motor, HUD y arte provisional; sus geometrías y peligros se cargan por separado.
 - Pendiente: pruebas reales de jugabilidad, ajustar dificultad, comprobar GitHub Pages y definir decoraciones.
+
+### 2026-10-09 — SHIFTY 0.8: monedas en el laboratorio
+- Se agregaron **3 monedas doradas opcionales** exclusivamente al Laboratorio; el Nivel 1 permanece congelado y sin modificaciones.
+- Las monedas tienen animación de giro/flotación, partículas al recogerlas y contador en el HUD.
+- El resultado del laboratorio incluye la cantidad de monedas obtenidas; se reinician al reintentar. Aún no existe guardado permanente.
+- Pendiente: probar su accesibilidad y colisiones en navegador; ajustar ubicación si alguna resulta difícil de recoger.
