@@ -114,3 +114,7 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Se añadió animación provisional de derrota con partículas y breve espera antes de reaparecer.
 - Recuperar tamaño normal con Q sigue siendo exclusivamente una ayuda temporal del laboratorio, no la mecánica definitiva.
 - **Pendiente:** verificar en navegador la física, los saltos y el pasadizo; no confundir plataformas sólidas con obstáculos letales.
+
+### 2026-10-09 — Prototipo 0.4: animaciones
+- Dany ahora tiene parpadeo periódico, balanceo suave en reposo, zancadas más marcadas, partículas al correr, impulso visual al saltar, estiramiento durante la caída y compresión al aterrizar.
+- Todas las animaciones son procedurales y provisionales; pendiente probarlas y ajustar sus tiempos y amplitudes en navegador.
