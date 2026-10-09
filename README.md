@@ -118,3 +118,10 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 ### 2026-10-09 — Prototipo 0.4: animaciones
 - Dany ahora tiene parpadeo periódico, balanceo suave en reposo, zancadas más marcadas, partículas al correr, impulso visual al saltar, estiramiento durante la caída y compresión al aterrizar.
 - Todas las animaciones son procedurales y provisionales; pendiente probarlas y ajustar sus tiempos y amplitudes en navegador.
+
+### 2026-10-09 — SHIFTY 0.5: navegación
+- Se añadió un **menú principal** con título SHIFTY, representación animada provisional de Dany y botón Jugar.
+- **Jugar** abre el selector de niveles; por ahora solo contiene el **Laboratorio de pruebas**.
+- Se añadió menú de **pausa** con Continuar, Reiniciar y Menú principal, activable con Escape o botón.
+- El nivel no avanza mientras el usuario está en los menús.
+- Pendiente: verificar la navegación en navegador, mejorar arte y definir las secciones definitivas del menú.
