@@ -170,3 +170,8 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Corregido el anclaje vertical de Dany al cambiar de tamaño: con gravedad normal conserva la posición de los pies; con gravedad invertida conserva la parte superior apoyada en el techo.
 - Al crecer se comprueba espacio contra plataformas, túneles, techo y límites horizontales. Si no cabe, se cancela el crecimiento sin mover al personaje.
 - El Nivel 1 sigue sin cambios. Pendiente: comprobar en navegador las combinaciones de ambas pociones.
+
+### 2026-10-09 — Fix adicional: techo sólido durante cambios de tamaño invertidos
+- Reporte: Dany todavía escapaba por arriba al alternar tamaño pequeño/normal con gravedad invertida.
+- Se agregó límite físico continuo y exclusivo del Laboratorio en la cara inferior del techo (y=16) al estar invertido, más estabilización de posición y velocidad al transformarse allí.
+- Pendiente: prueba manual del usuario en GitHub Pages; no se considera validado hasta reproducir la secuencia sin fallos.
