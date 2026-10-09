@@ -144,3 +144,11 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Las monedas tienen animación de giro/flotación, partículas al recogerlas y contador en el HUD.
 - El resultado del laboratorio incluye la cantidad de monedas obtenidas; se reinician al reintentar. Aún no existe guardado permanente.
 - Pendiente: probar su accesibilidad y colisiones en navegador; ajustar ubicación si alguna resulta difícil de recoger.
+
+### 2026-10-09 — SHIFTY 0.9: inventario visual del laboratorio
+- Se añadió un indicador de inventario de Poción Mini y estado actual (normal/mini) al HUD del Laboratorio.
+- Recoger la poción la almacena sin activarla; usarla con Q o el botón consume una unidad.
+- Sin pociones, la acción muestra un aviso; volver al tamaño normal sigue siendo una función de pruebas sin devolución de la poción.
+- Se agregaron partículas al recoger pociones y etiquetas dinámicas en el botón.
+- Nivel 1 permanece congelado, sin cambios en sus plataformas, obstáculos ni mecánicas.
+- Pendiente: comprobar la actualización en navegador y evolucionar el inventario para múltiples tipos de pociones.
