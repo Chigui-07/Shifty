@@ -105,3 +105,12 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Se añadió un pasadizo bajo para probar el cambio de tamaño. Los gráficos y geometría son provisionales.
 - Este nivel es un **laboratorio de pruebas**, no un nivel oficial.
 - Pendiente: probar la colisión, ajustar posición del pasadizo, mejorar decoraciones y definir cómo se obtiene la poción para recuperar el tamaño normal en el diseño definitivo. La alternancia actual es una facilidad temporal de prueba.
+
+### 2026-10-09 — Ajustes de laboratorio (0.3)
+- La poción se llama **Poción Mini** y es **verde claro**.
+- Al estar pequeño, Dany **corre más rápido** (345 frente a 260 unidades/s) y **salta menos alto** (impulso -460 frente a -660); valores provisionales para probar.
+- Se revisaron las colisiones horizontales y verticales de las plataformas, que deben ser sólidas; los obstáculos peligrosos y caídas eliminan a Dany.
+- Se añadió porcentaje de avance por posición horizontal (0–99 %, 100 % al llegar a la meta).
+- Se añadió animación provisional de derrota con partículas y breve espera antes de reaparecer.
+- Recuperar tamaño normal con Q sigue siendo exclusivamente una ayuda temporal del laboratorio, no la mecánica definitiva.
+- **Pendiente:** verificar en navegador la física, los saltos y el pasadizo; no confundir plataformas sólidas con obstáculos letales.
