@@ -165,3 +165,8 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Laboratorio: indicador visible de gravedad normal/invertida en HUD y aviso amarillo en pantalla mientras la gravedad está invertida.
 - Nivel 1 sigue congelado: sin modificaciones de recorrido ni obstáculos.
 - Pendiente: probar visualmente en navegador y validar física invertida antes de sumar más mecánicas.
+
+### 2026-10-09 — Fix: transformación Mini + gravedad invertida
+- Corregido el anclaje vertical de Dany al cambiar de tamaño: con gravedad normal conserva la posición de los pies; con gravedad invertida conserva la parte superior apoyada en el techo.
+- Al crecer se comprueba espacio contra plataformas, túneles, techo y límites horizontales. Si no cabe, se cancela el crecimiento sin mover al personaje.
+- El Nivel 1 sigue sin cambios. Pendiente: comprobar en navegador las combinaciones de ambas pociones.
