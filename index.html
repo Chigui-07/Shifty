@@ -108,7 +108,7 @@ for(const p of solids){
  else if(player.vx>=0&&oldX+player.w<=p.x+4){player.x=p.x-player.w}
  else if(player.vx<=0&&oldX>=p.x+p.w-4){player.x=p.x+p.w}
 }
-progressEl.textContent=Math.min(99,Math.max(0,Math.floor((player.x/(worldW-85))*100)))+"%";
+progressEl.textContent=Math.min(99,Math.max(0,Math.floor(((player.x-64)/(worldW-85-64))*100)))+"%";
 if(player.y>H+130||hazards.some(h=>overlap(player,h))){die();return}
 if(player.x+player.w>=worldW-85&&player.onGround){won=true;progressEl.textContent="100%";statusEl.textContent="¡Nivel completado! 🎉";burst(player.x+28,player.y,40)}
 player.anim+=dt*(player.onGround?Math.abs(player.vx)/24:2);
