@@ -98,3 +98,10 @@ Motor, plataforma, controles, estética, interfaz, diseño de Dany y personajes 
 
 ## Ejecutar prototipo
 Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar nada. Para publicarlo en GitHub Pages: Settings → Pages → Deploy from a branch → main / root. La publicación aún debe configurarse y verificarse.
+
+### 2026-10-09 — Prototipo de laboratorio: poción pequeña
+- Se añadió al `index.html` una poción coleccionable para probar el inventario y la transformación de tamaño.
+- **Q** o el botón táctil permite usar una poción recogida y alternar entre tamaño pequeño y normal; la transformación de regreso se bloquea si falta espacio.
+- Se añadió un pasadizo bajo para probar el cambio de tamaño. Los gráficos y geometría son provisionales.
+- Este nivel es un **laboratorio de pruebas**, no un nivel oficial.
+- Pendiente: probar la colisión, ajustar posición del pasadizo, mejorar decoraciones y definir cómo se obtiene la poción para recuperar el tamaño normal en el diseño definitivo. La alternancia actual es una facilidad temporal de prueba.
