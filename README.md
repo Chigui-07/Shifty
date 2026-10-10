@@ -288,3 +288,9 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - La orientación no se puede forzar universalmente desde el navegador: depende del dispositivo, permisos y soporte de instalación. El teléfono puede requerir rotación automática activada.
 - GitHub Pages continúa como distribución oficial; cada commit desplegado actualiza la PWA en línea, aunque el navegador puede tardar en refrescar recursos almacenados.
 - Pendiente: probar instalación y controles en Android real; posiblemente añadir íconos PNG para compatibilidad amplia.
+
+### 2026-10-10 — SHIFTY 0.28: instalación en PC
+- Se añadió el botón «Instalar SHIFTY» que aparece en navegadores compatibles cuando la aplicación es instalable.
+- El manifiesto y el service worker existentes también permiten instalación como aplicación independiente en computadoras (Chrome/Edge compatibles), sin abandonar GitHub Pages.
+- Se conservan controles de teclado y distribución de escritorio; el botón no aparece si el navegador no ofrece instalación.
+- Pendiente: comprobar mañana la instalación en computadora y la disponibilidad de actualizaciones.
