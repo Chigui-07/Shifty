@@ -195,3 +195,11 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Zonas de pruebas: señalización visible para Mini, Gravedad, túnel y combinación de poderes; no se modifica la geometría de Nivel 1 ni se añaden riesgos al recorrido.
 - Audio sintetizado con Web Audio: saltar, recoger monedas/pociones, transformar, fallar y completar; botón para activar o silenciar sonido. El audio comienza tras una interacción permitida por el navegador.
 - Pendiente: probar manualmente interfaz, audio y jugabilidad en navegador; no se considera validado aún.
+
+### 2026-10-09 — SHIFTY 0.15: Poción Nave (sin alas)
+- Nueva poción celeste en Laboratorio, ubicada cerca de x=760; se recoge en inventario y se activa con G o botón táctil.
+- Al activarla Dany saca una nave desde atrás, entra en la cabina y puede pilotarla. G permite guardarla sin recuperar la poción consumida.
+- Dentro de la nave, mantener Saltar/espacio activa propulsores en vez de un salto; al soltar se aplica gravedad. Con gravedad invertida, gravedad y propulsión se invierten y también se invierte el movimiento horizontal de la nave.
+- Combinaciones simultáneas: tamaño Mini + gravedad invertida + nave; con Mini, la nave es más pequeña y se desplaza más rápido.
+- Inventario, señales y controles actualizados. Nivel 1 sin cambios de geometría o contenido.
+- Pendiente: probar visualmente la animación y la física de vuelo/colisiones en navegador, en especial las combinaciones triples.
