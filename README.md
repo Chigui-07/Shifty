@@ -271,3 +271,12 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Se contempla el apoyo en la cara inferior al jugar con gravedad invertida.
 - Las plataformas intermitentes no se modifican: siguen desapareciendo y dejan caer a Dany.
 - Nivel 1 permanece intacto. Pendiente: validar en navegador el transporte sobre plataformas verticales y con gravedad invertida.
+
+### 2026-10-10 — SHIFTY 0.26: alcance de beta, lienzo y controles móviles
+- Decisión de diseño: primera beta de estilo geométrico digital, sin temática de aire libre.
+- Cada nivel nuevo del futuro editor partirá de un lienzo vacío con suelo continuo; el creador colocará las demás piezas. El nivel beta provisional se simplificó a suelo continuo, sin obstáculos precolocados, con fondo violeta/azul y suelo geométrico.
+- Piezas previstas para la beta: bloques sólidos de apoyo, pinchos oscuros, nave, pociones de gravedad normal/invertida y de activación/retirada de vehículo. Sin techo por defecto.
+- Reservado para actualizaciones futuras: rueda, pociones de tamaño pequeño/grande, sierras, plataformas móviles, propulsores y otras mecánicas avanzadas.
+- El Laboratorio conserva todas las mecánicas ya implementadas para pruebas, pero no representa el catálogo inicial de la beta.
+- En dispositivos táctiles, controles izquierda/derecha/salto fijados a la parte inferior de la pantalla y disposición de juego ajustada a la altura del dispositivo, evitando desplazamiento de la página. La cámara horizontal del mundo continúa siguiendo a Dany.
+- Pendiente: implementar editor, catálogo restringido de beta, niveles guardables y probar controles en teléfono real.
