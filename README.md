@@ -280,3 +280,11 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - El Laboratorio conserva todas las mecánicas ya implementadas para pruebas, pero no representa el catálogo inicial de la beta.
 - En dispositivos táctiles, controles izquierda/derecha/salto fijados a la parte inferior de la pantalla y disposición de juego ajustada a la altura del dispositivo, evitando desplazamiento de la página. La cámara horizontal del mundo continúa siguiendo a Dany.
 - Pendiente: implementar editor, catálogo restringido de beta, niveles guardables y probar controles en teléfono real.
+
+### 2026-10-10 — SHIFTY 0.27: PWA y juego horizontal
+- Se agregó `manifest.webmanifest` para instalar SHIFTY como aplicación web independiente desde navegadores compatibles; modo fullscreen y orientación landscape solicitada.
+- Se creó `icon.svg` como ícono inicial y `sw.js` con caché de recursos y preferencia por la red para recibir actualizaciones desde GitHub Pages.
+- Interfaz móvil en horizontal: canvas ocupa el área disponible, HUD compacto y controles táctiles fijos sobre la pantalla. En vertical aparece una sugerencia para girar el dispositivo.
+- La orientación no se puede forzar universalmente desde el navegador: depende del dispositivo, permisos y soporte de instalación. El teléfono puede requerir rotación automática activada.
+- GitHub Pages continúa como distribución oficial; cada commit desplegado actualiza la PWA en línea, aunque el navegador puede tardar en refrescar recursos almacenados.
+- Pendiente: probar instalación y controles en Android real; posiblemente añadir íconos PNG para compatibilidad amplia.
