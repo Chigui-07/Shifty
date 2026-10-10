@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SHIFTY · Prototipo 0.12</title>
+<title>SHIFTY · Prototipo 0.13</title>
 <style>
 :root{font-family:system-ui,Segoe UI,sans-serif;color:#f1f6ff;background:#101827}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:18px}
@@ -26,10 +26,10 @@ kbd{background:#344661;border-radius:5px;padding:2px 6px}button{font:inherit;col
 @keyframes bob{50%{transform:translateY(-9px)}}.level-tile{border:2px solid #8fb8ed;border-radius:14px;padding:16px;width:100%;background:#29486d;cursor:pointer}
 </style></head>
 <body><main>
-<header><div><h1>SHIFTY <small>0.12</small></h1><small>Prototipo jugable · Dany</small></div><button id="pauseBtn">⏸ Pausa (Esc)</button> <button id="reset">↻ Reiniciar nivel</button></header>
+<header><div><h1>SHIFTY <small>0.13</small></h1><small>Prototipo jugable · Dany</small></div><button id="pauseBtn">⏸ Pausa (Esc)</button> <button id="reset">↻ Reiniciar nivel</button></header>
 <section class="panel"><div class="hud"><span id="attempts">Intentos: 1</span><span id="status">Recoge la poción y llega a la bandera ✦</span><span id="gravityState" style="display:none">⬇ Gravedad normal</span><span id="inventoryHud" style="display:none">🧪 Mini: 0 · Normal</span><span id="coinsHud" style="display:none">🪙 0/3</span><span id="progress">0%</span><span id="time">00:00</span></div>
 <div class="progress-track" aria-label="Progreso del nivel"><div id="progressFill" class="progress-fill"></div></div><div class="game">
-<div class="screen active" id="homeScreen"><div class="screen-content"><h2>SHIFTY</h2><div class="mascot"><span class="smile"></span></div><p>¡Bienvenido al prototipo!</p><button class="menu-btn" id="playBtn">▶ JUGAR</button><small>Versión 0.12 · Desarrollo</small></div></div>
+<div class="screen active" id="homeScreen"><div class="screen-content"><h2>SHIFTY</h2><div class="mascot"><span class="smile"></span></div><p>¡Bienvenido al prototipo!</p><button class="menu-btn" id="playBtn">▶ JUGAR</button><small>Versión 0.13 · Desarrollo</small></div></div>
 <div class="screen" id="levelsScreen"><div class="screen-content"><h3>Seleccionar nivel</h3><button class="level-tile" id="firstBtn"><strong>⭐ Nivel 1 · Primeros pasos</strong><p>Aprende a moverte, saltar y evitar obstáculos</p></button><button class="level-tile" id="labBtn"><strong>🧪 Laboratorio de pruebas</strong><p>Poción Mini · Gravedad · Monedas · Obstáculos</p></button><button class="menu-btn" id="levelsBack">← Volver</button></div></div>
 <div class="screen" id="winScreen"><div class="screen-content"><h3>🏁 ¡NIVEL COMPLETADO!</h3><p id="winStats">¡Buen trabajo!</p><button class="menu-btn" id="retryWinBtn">↻ Volver a jugar</button><button class="menu-btn" id="levelsWinBtn">☰ Selección de niveles</button><button class="menu-btn" id="homeWinBtn">⌂ Menú principal</button></div></div>
 <div class="screen" id="pauseScreen"><div class="screen-content"><h3>⏸ PAUSA</h3><button class="menu-btn" id="resumeBtn">▶ Continuar</button><button class="menu-btn" id="restartBtn">↻ Reiniciar</button><button class="menu-btn" id="exitBtn">⌂ Menú principal</button></div></div>
@@ -159,9 +159,10 @@ const landing=player.land>0?Math.sin((player.land/.22)*Math.PI)*.17:0;
 const airborne=!player.onGround,elongate=airborne?(player.vy>100?.10:-.09):0;
 const stretch=player.stretch>0?.11:0;
 const sx=1+landing-elongate-stretch,sy=1-landing+elongate+stretch;
-const idle=(!walking&&!airborne)?Math.sin(player.anim*1.7)*1.3:0;
+const breathing=(!walking&&!airborne)?Math.sin(player.anim*1.65):0;
+const idle=breathing*1.1;
 const flash=transformationFx?Math.sin(Math.PI*transformationFx.time/transformationFx.duration):0;
-ctx.save();ctx.translate(x+player.w/2,y+player.h/2);ctx.scale(scale*sx*(1+flash*.09),(inverted?-1:1)*scale*sy*(1-flash*.07));ctx.translate(0,idle);
+ctx.save();ctx.translate(x+player.w/2,y+player.h/2);ctx.scale(scale*sx*(1+flash*.09+breathing*.012),(inverted?-1:1)*scale*sy*(1-flash*.07+breathing*.018));ctx.translate(0,idle);
 if(!player.onGround)ctx.rotate(player.vy<0?-.055:.055);
 if(walking)ctx.rotate(Math.sin(player.anim)*.035);
 ctx.strokeStyle="#283345";ctx.lineWidth=7;ctx.lineCap="round";
@@ -187,7 +188,7 @@ if(currentLevel==="lab")roundRect(0,-24,worldW,40,0,"#53637c","#2c3850");
 for(const p of platforms){roundRect(p.x,p.y,p.w,p.h,6,"#354d65","#26384d");rect(p.x,p.y,p.w,9,"#66d2a0")}
 for(const t of tunnels){roundRect(t.x,t.y,t.w,t.h,3,"#627e9c","#253b51");rect(t.x+4,t.y+5,t.w-8,7,"#96b7d6")}
 for(const coin of coins){if(!coin.taken){const cy=coin.y+Math.sin(elapsed*4+coin.x)*4;ctx.save();ctx.translate(coin.x,cy);ctx.scale(.3+.7*Math.abs(Math.cos(elapsed*3+coin.x)),1);ctx.beginPath();ctx.arc(0,0,13,0,Math.PI*2);ctx.fillStyle="#ffd24d";ctx.fill();ctx.lineWidth=3;ctx.strokeStyle="#b77c13";ctx.stroke();ctx.fillStyle="#fff0a5";ctx.fillRect(-2,-8,4,16);ctx.restore()}}
-for(const p of potions){if(!p.taken){const grav=p.type==="gravity";roundRect(p.x-3,p.y-9,22,27,6,grav?"#ffdf55":"#a6f58a",grav?"#9b7100":"#397c38");rect(p.x+3,p.y-14,10,6,"#e7ffe1");ctx.fillStyle=grav?"#805600":"#26672d";ctx.font="bold 18px system-ui";ctx.fillText(grav?"↑":"↓",p.x+1,p.y+11)}}
+for(const p of potions){if(!p.taken){const grav=p.type==="gravity",phase=performance.now()*.0025+p.x*.035,bob=Math.sin(phase)*5,glow=.22+.12*Math.sin(phase*1.6);ctx.save();ctx.translate(0,bob);ctx.fillStyle=grav?"#ffdf55":"#a6f58a";ctx.globalAlpha=glow;ctx.beginPath();ctx.arc(p.x+8,p.y+2,23,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;roundRect(p.x-3,p.y-9,22,27,6,grav?"#ffdf55":"#a6f58a",grav?"#9b7100":"#397c38");rect(p.x+3,p.y-14,10,6,"#e7ffe1");ctx.fillStyle=grav?"#805600":"#26672d";ctx.font="bold 18px system-ui";ctx.fillText(grav?"↑":"↓",p.x+1,p.y+11);ctx.restore()}}
 for(const h of hazards){ctx.fillStyle="#ff7777";ctx.beginPath();ctx.moveTo(h.x,h.y+h.h);ctx.lineTo(h.x+h.w/2,h.y);ctx.lineTo(h.x+h.w,h.y+h.h);ctx.closePath();ctx.fill()}
 rect(worldW-78,groundY-128,6,128,"#e8f3ff");ctx.fillStyle="#ffcb57";ctx.beginPath();ctx.moveTo(worldW-72,groundY-127);ctx.lineTo(worldW-14,groundY-107);ctx.lineTo(worldW-72,groundY-88);ctx.fill();
 ctx.restore();
