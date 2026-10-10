@@ -312,3 +312,8 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Editor oficial visible como categoría separada, pero bloqueado hasta implementar autenticación y autorización de propietario en servidor. No se ha creado ningún mecanismo inseguro para habilitarlo.
 - Service worker renovado a 0.31 e incluye el editor en la caché.
 - Pendientes: permisos seguros del editor oficial, guardado en la nube, ampliar editor y pruebas reales en móvil/PC. La nave pesada sigue pendiente de ajuste.
+
+### 2026-10-10 — Editor 0.32: desbloqueo y prioridad PC
+- Se eliminó la restricción que impedía colocar piezas en los primeros 120 píxeles del nivel cerca de Dany. Ahora puede editarse toda la cuadrícula por encima del suelo; si se tapa el inicio, el nivel podría no ser jugable.
+- El usuario reportó que la versión móvil del editor solo mostraba la parte superior. Por decisión expresa, se prioriza terminar y probar el editor de computadora antes de adaptar el editor a teléfono. El juego móvil sigue disponible.
+- Caché PWA renovada a 0.32. No se alteró la versión del motor del juego ni los niveles existentes.
