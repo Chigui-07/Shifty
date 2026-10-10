@@ -298,3 +298,8 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 ### 2026-10-10 — SHIFTY 0.29: controles táctiles ergonómicos
 - Botones de movimiento agrupados a la izquierda y botón Saltar/Volar trasladado a la derecha para jugar con ambos pulgares.
 - El botón mantiene el comportamiento de pulsación sostenida para propulsar la nave.
+
+### 2026-10-10 — SHIFTY 0.30: corrección controles en móvil y caché
+- Los controles táctiles tienen grupos explícitos: `move-pad` fijo a la izquierda y `jump-pad` fijo al extremo derecho, separados del panel de herramientas.
+- Se renueva el nombre de caché del service worker a 0.30 y se solicita su actualización al abrir la PWA.
+- Para comprobar la nueva versión, abrir la URL 0.30 en Chrome con conexión, esperar la publicación de GitHub Pages y reiniciar la PWA.
