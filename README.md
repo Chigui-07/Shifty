@@ -251,3 +251,10 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Añadidas siete pociones a lo largo del techo del Laboratorio (altura y=62), incluyendo varias celestes para restaurar la gravedad normal, rosa para nave, gris para salir de ella, verde para crecer y morada para encogerse.
 - Señal de orientación en la parte superior. Permite salir del techo sin reiniciar después de invertir gravedad.
 - Nivel 1 permanece intacto. Pendiente: validar accesibilidad de todas las botellas en navegador.
+
+### 2026-10-10 — SHIFTY 0.23: propulsores y sierras móviles
+- Dos propulsores azules en el suelo del Laboratorio lanzan a Dany con velocidad vertical hacia arriba, permitiendo saltos altos sin pulsar otra tecla.
+- Dos propulsores naranjas suspendidos en el aire aceleran la caída de Dany hacia abajo.
+- Los propulsores funcionan con Dany normal, Mini y en nave, independientemente del estado de gravedad; tienen un breve enfriamiento para evitar activaciones repetidas instantáneas.
+- Dos sierras móviles oscilan horizontalmente y hacen perder el intento al tocarlas. Se añadieron efectos gráficos y carteles explicativos.
+- Nivel 1 permanece intacto. Pendiente: comprobar equilibrio, accesibilidad y colisiones en navegador.
