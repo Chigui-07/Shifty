@@ -188,3 +188,10 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Dany respira suavemente cuando está quieto y apoyado, tanto en gravedad normal como invertida. El efecto modifica únicamente la representación gráfica, no las colisiones.
 - Nivel 1 conserva recorrido y jugabilidad. Próxima propuesta: inventario escalable para futuras pociones.
 - Pendiente: comprobación visual en navegador.
+
+### 2026-10-09 — SHIFTY 0.14: cuatro mejoras del Laboratorio
+- Inventario visual: ranuras de Poción Mini y Gravedad con cantidades, teclas Q/F y resaltado de habilidades activas; tercera ranura reservada para una futura habilidad. Solo se muestra en Laboratorio.
+- Movimiento: se corrigió la animación de respiración para que siga avanzando cuando Dany permanece quieto.
+- Zonas de pruebas: señalización visible para Mini, Gravedad, túnel y combinación de poderes; no se modifica la geometría de Nivel 1 ni se añaden riesgos al recorrido.
+- Audio sintetizado con Web Audio: saltar, recoger monedas/pociones, transformar, fallar y completar; botón para activar o silenciar sonido. El audio comienza tras una interacción permitida por el navegador.
+- Pendiente: probar manualmente interfaz, audio y jugabilidad en navegador; no se considera validado aún.
