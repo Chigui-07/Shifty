@@ -224,3 +224,11 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - La nave Mini conserva mayor agilidad que la grande.
 - Inclinación visual sutil según velocidad y llama de propulsión proporcional al empuje real.
 - Nivel 1 no se altera. Pendiente: probar en navegador el equilibrio de la física, las colisiones y la combinación triple.
+
+### 2026-10-09 — SHIFTY 0.19: pociones de contacto
+- Eliminado el uso del inventario y de las teclas Q/F/G/H para activar pociones. Los efectos se aplican directamente al tocar las botellas.
+- Verde: tamaño Mini; amarilla: gravedad invertida; rosa: nave pilotable; gris: restaura simultáneamente tamaño normal, gravedad normal y ausencia de nave.
+- Las transformaciones pueden combinarse y permanecen activas hasta tocar una botella gris. Las botellas ya usadas desaparecen durante ese intento.
+- Si no hay espacio para crecer al tocar la gris, no se consume y se muestra un aviso.
+- Los botones de pociones y la barra de inventario se ocultan; las señales y las instrucciones ahora explican el contacto. Los controles de movimiento, salto/propulsores y el Nivel 1 permanecen.
+- Pendiente: pruebas manuales de contacto, colisiones y retorno a Normal en navegador.
