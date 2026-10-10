@@ -217,3 +217,10 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Los controles horizontales conservan su sentido natural en nave invertida: izquierda va a la izquierda y derecha a la derecha. La sensación diferente proviene de la orientación visual y de la dinámica vertical.
 - Se conserva Nivel 1 y la combinación de Mini + Nave + Gravedad invertida.
 - Pendiente: validar en navegador la colisión a velocidad máxima y el aterrizaje desde ambos lados.
+
+### 2026-10-09 — SHIFTY 0.18: nave con inercia y peso
+- La nave acelera, frena y cambia de dirección progresivamente, sin invertir controles horizontales.
+- Con gravedad invertida, la respuesta horizontal y el encendido de propulsores son más lentos; se incrementa ligeramente la fuerza de gravedad para una sensación más pesada.
+- La nave Mini conserva mayor agilidad que la grande.
+- Inclinación visual sutil según velocidad y llama de propulsión proporcional al empuje real.
+- Nivel 1 no se altera. Pendiente: probar en navegador el equilibrio de la física, las colisiones y la combinación triple.
