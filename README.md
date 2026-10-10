@@ -294,3 +294,7 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - El manifiesto y el service worker existentes también permiten instalación como aplicación independiente en computadoras (Chrome/Edge compatibles), sin abandonar GitHub Pages.
 - Se conservan controles de teclado y distribución de escritorio; el botón no aparece si el navegador no ofrece instalación.
 - Pendiente: comprobar mañana la instalación en computadora y la disponibilidad de actualizaciones.
+
+### 2026-10-10 — SHIFTY 0.29: controles táctiles ergonómicos
+- Botones de movimiento agrupados a la izquierda y botón Saltar/Volar trasladado a la derecha para jugar con ambos pulgares.
+- El botón mantiene el comportamiento de pulsación sostenida para propulsar la nave.
