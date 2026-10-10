@@ -232,3 +232,9 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Si no hay espacio para crecer al tocar la gris, no se consume y se muestra un aviso.
 - Los botones de pociones y la barra de inventario se ocultan; las señales y las instrucciones ahora explican el contacto. Los controles de movimiento, salto/propulsores y el Nivel 1 permanecen.
 - Pendiente: pruebas manuales de contacto, colisiones y retorno a Normal en navegador.
+
+### 2026-10-09 — SHIFTY 0.20: arreglo de nave invertida inmóvil
+- La colisión horizontal solo bloquea al cruzar realmente un lateral del obstáculo desde fuera; se evita inmovilizar la nave cuando se desplaza junto a superficies tras invertir gravedad.
+- La nave invertida responde algo más rápido horizontalmente sin perder la inercia; propulsores invertidos ligeramente más fuertes para contrarrestar su peso.
+- Izquierda y derecha mantienen su sentido normal. Nivel 1 sin cambios.
+- Pendiente: verificar en navegador, en particular nave + gravedad invertida y triple combinación con Mini.
