@@ -175,3 +175,10 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Reporte: Dany todavía escapaba por arriba al alternar tamaño pequeño/normal con gravedad invertida.
 - Se agregó límite físico continuo y exclusivo del Laboratorio en la cara inferior del techo (y=16) al estar invertido, más estabilización de posición y velocidad al transformarse allí.
 - Pendiente: prueba manual del usuario en GitHub Pages; no se considera validado hasta reproducir la secuencia sin fallos.
+
+### 2026-10-09 — SHIFTY 0.12: efectos de transformación
+- Laboratorio: al usar Poción Mini o restaurar tamaño, Dany muestra pulso y partículas verdes.
+- Al activar o restaurar gravedad, se muestra pulso y partículas amarillas.
+- La animación visual dura aproximadamente 0,42 segundos; no modifica el tamaño físico, las colisiones ni la física existente.
+- Se limpia el efecto al reiniciar el intento. Nivel 1 permanece congelado.
+- Pendiente: comprobar los efectos en navegador, incluyendo transformaciones con gravedad invertida sobre el techo.
