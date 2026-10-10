@@ -303,3 +303,12 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Los controles táctiles tienen grupos explícitos: `move-pad` fijo a la izquierda y `jump-pad` fijo al extremo derecho, separados del panel de herramientas.
 - Se renueva el nombre de caché del service worker a 0.30 y se solicita su actualización al abrir la PWA.
 - Para comprobar la nueva versión, abrir la URL 0.30 en Chrome con conexión, esperar la publicación de GitHub Pages y reiniciar la PWA.
+
+### 2026-10-10 — SHIFTY 0.31: primer editor de niveles
+- Nuevo `editor.html` responsive para móvil y computadora, con cuadrícula de 40 px, catálogo público (bloque, pincho oscuro, nave, quitar nave, gravedad invertida y normal), borrador, deshacer, desplazamiento de cámara, nombre de nivel y nuevo lienzo con solo suelo.
+- Guardado, apertura y eliminación de múltiples niveles mediante `localStorage` del dispositivo. No hay sincronización entre dispositivos ni cuentas todavía.
+- Botón para probar diseños desde el editor; `index.html` carga el nivel de prueba, integra sus colisiones y pociones y conserva el Laboratorio.
+- Menú principal incorpora acceso al editor y selección de niveles permite probar el último diseño enviado.
+- Editor oficial visible como categoría separada, pero bloqueado hasta implementar autenticación y autorización de propietario en servidor. No se ha creado ningún mecanismo inseguro para habilitarlo.
+- Service worker renovado a 0.31 e incluye el editor en la caché.
+- Pendientes: permisos seguros del editor oficial, guardado en la nube, ampliar editor y pruebas reales en móvil/PC. La nave pesada sigue pendiente de ajuste.
