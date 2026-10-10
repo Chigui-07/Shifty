@@ -258,3 +258,10 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Los propulsores funcionan con Dany normal, Mini y en nave, independientemente del estado de gravedad; tienen un breve enfriamiento para evitar activaciones repetidas instantáneas.
 - Dos sierras móviles oscilan horizontalmente y hacen perder el intento al tocarlas. Se añadieron efectos gráficos y carteles explicativos.
 - Nivel 1 permanece intacto. Pendiente: comprobar equilibrio, accesibilidad y colisiones en navegador.
+
+### 2026-10-10 — SHIFTY 0.24: plataformas móviles e intermitentes
+- Tres plataformas móviles oscilan horizontal o verticalmente en el Laboratorio.
+- Tres plataformas intermitentes aparecen durante aproximadamente el 62 % de cada ciclo y luego desaparecen; se dibuja su contorno cuando están ausentes.
+- Las plataformas activas participan en las colisiones del jugador y combinan con propulsores y sierras.
+- Señales de orientación y texto del Laboratorio actualizados. Nivel 1 intacto.
+- Pendiente: pruebas en navegador, especialmente cuando una plataforma desaparece bajo Dany o se mueve mientras está encima.
