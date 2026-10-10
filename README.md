@@ -182,3 +182,9 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - La animación visual dura aproximadamente 0,42 segundos; no modifica el tamaño físico, las colisiones ni la física existente.
 - Se limpia el efecto al reiniciar el intento. Nivel 1 permanece congelado.
 - Pendiente: comprobar los efectos en navegador, incluyendo transformaciones con gravedad invertida sobre el techo.
+
+### 2026-10-09 — SHIFTY 0.13: animaciones ambientales
+- Pociones Mini (verde) y Gravedad (amarilla) flotan suavemente arriba/abajo y muestran un halo pulsante. El movimiento es visual: sus coordenadas de recogida no cambian.
+- Dany respira suavemente cuando está quieto y apoyado, tanto en gravedad normal como invertida. El efecto modifica únicamente la representación gráfica, no las colisiones.
+- Nivel 1 conserva recorrido y jugabilidad. Próxima propuesta: inventario escalable para futuras pociones.
+- Pendiente: comprobación visual en navegador.
