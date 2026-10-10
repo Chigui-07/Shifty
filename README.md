@@ -265,3 +265,9 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Las plataformas activas participan en las colisiones del jugador y combinan con propulsores y sierras.
 - Señales de orientación y texto del Laboratorio actualizados. Nivel 1 intacto.
 - Pendiente: pruebas en navegador, especialmente cuando una plataforma desaparece bajo Dany o se mueve mientras está encima.
+
+### 2026-10-10 — SHIFTY 0.25: plataformas móviles transportan a Dany
+- Corrección: si Dany está apoyado sobre una plataforma móvil, hereda el desplazamiento horizontal y vertical de esa plataforma.
+- Se contempla el apoyo en la cara inferior al jugar con gravedad invertida.
+- Las plataformas intermitentes no se modifican: siguen desapareciendo y dejan caer a Dany.
+- Nivel 1 permanece intacto. Pendiente: validar en navegador el transporte sobre plataformas verticales y con gravedad invertida.
