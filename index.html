@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SHIFTY · Prototipo 0.19</title>
+<title>SHIFTY · Prototipo 0.20</title>
 <style>
 :root{font-family:system-ui,Segoe UI,sans-serif;color:#f1f6ff;background:#101827}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:18px}
@@ -26,10 +26,10 @@ kbd{background:#344661;border-radius:5px;padding:2px 6px}button{font:inherit;col
 @keyframes bob{50%{transform:translateY(-9px)}}.level-tile{border:2px solid #8fb8ed;border-radius:14px;padding:16px;width:100%;background:#29486d;cursor:pointer}
 </style></head>
 <body><main>
-<header><div><h1>SHIFTY <small>0.19</small></h1><small>Prototipo jugable · Dany</small></div><button id="pauseBtn">⏸ Pausa (Esc)</button> <button id="reset">↻ Reiniciar nivel</button></header>
+<header><div><h1>SHIFTY <small>0.20</small></h1><small>Prototipo jugable · Dany</small></div><button id="pauseBtn">⏸ Pausa (Esc)</button> <button id="reset">↻ Reiniciar nivel</button></header>
 <section class="panel"><div class="hud"><span id="attempts">Intentos: 1</span><span id="status">Recoge la poción y llega a la bandera ✦</span><span id="gravityState" style="display:none">⬇ Gravedad normal</span><span id="inventoryHud" style="display:none">🧪 Mini: 0 · Normal</span><span id="coinsHud" style="display:none">🪙 0/3</span><span id="progress">0%</span><span id="time">00:00</span></div>
 <div id="inventoryBar" class="inventory-bar" aria-label="Inventario de pociones"><div id="miniSlot" class="inventory-slot">🟢 Mini <strong>0</strong> <small>Q</small></div><div id="gravitySlot" class="inventory-slot">🟡 Gravedad <strong>0</strong> <small>F</small></div><div id="shipSlot" class="inventory-slot">🩷 Nave <strong>0</strong> <small>G</small></div><div id="normalSlot" class="inventory-slot">⚪ Normal <strong>0</strong> <small>H</small></div></div><div class="progress-track" aria-label="Progreso del nivel"><div id="progressFill" class="progress-fill"></div></div><div class="game">
-<div class="screen active" id="homeScreen"><div class="screen-content"><h2>SHIFTY</h2><div class="mascot"><span class="smile"></span></div><p>¡Bienvenido al prototipo!</p><button class="menu-btn" id="playBtn">▶ JUGAR</button><small>Versión 0.19 · Desarrollo</small></div></div>
+<div class="screen active" id="homeScreen"><div class="screen-content"><h2>SHIFTY</h2><div class="mascot"><span class="smile"></span></div><p>¡Bienvenido al prototipo!</p><button class="menu-btn" id="playBtn">▶ JUGAR</button><small>Versión 0.20 · Desarrollo</small></div></div>
 <div class="screen" id="levelsScreen"><div class="screen-content"><h3>Seleccionar nivel</h3><button class="level-tile" id="firstBtn"><strong>⭐ Nivel 1 · Primeros pasos</strong><p>Aprende a moverte, saltar y evitar obstáculos</p></button><button class="level-tile" id="labBtn"><strong>🧪 Laboratorio de pruebas</strong><p>Toca las pociones para transformarte · Gris para volver a normal · Monedas</p></button><button class="menu-btn" id="levelsBack">← Volver</button></div></div>
 <div class="screen" id="winScreen"><div class="screen-content"><h3>🏁 ¡NIVEL COMPLETADO!</h3><p id="winStats">¡Buen trabajo!</p><button class="menu-btn" id="retryWinBtn">↻ Volver a jugar</button><button class="menu-btn" id="levelsWinBtn">☰ Selección de niveles</button><button class="menu-btn" id="homeWinBtn">⌂ Menú principal</button></div></div>
 <div class="screen" id="pauseScreen"><div class="screen-content"><h3>⏸ PAUSA</h3><button class="menu-btn" id="resumeBtn">▶ Continuar</button><button class="menu-btn" id="restartBtn">↻ Reiniciar</button><button class="menu-btn" id="exitBtn">⌂ Menú principal</button></div></div>
@@ -117,7 +117,7 @@ elapsed+=dt;if(transformationFx){transformationFx.time+=dt;if(transformationFx.t
 if(emoteTimer>0){emoteTimer-=dt;if(emoteTimer<=0)emote=""}
 const speed=inShip?(small?420:325):(small?345:260);
 const desiredVx=(Number(keys.right)-Number(keys.left))*speed;
-if(inShip){const response=inverted?(small?3.7:2.5):(small?7:5);player.vx+=(desiredVx-player.vx)*(1-Math.exp(-response*dt));if(Math.abs(player.vx)<.5&&desiredVx===0)player.vx=0;shipTilt+=(Math.max(-.17,Math.min(.17,-player.vx/speed*.13))-shipTilt)*(1-Math.exp(-4*dt));shipThrust+=((keys.jump?1:0)-shipThrust)*(1-Math.exp(-(inverted?3.4:7)*dt))}
+if(inShip){const response=inverted?(small?5.4:4.3):(small?7:5);player.vx+=(desiredVx-player.vx)*(1-Math.exp(-response*dt));if(Math.abs(player.vx)<.5&&desiredVx===0)player.vx=0;shipTilt+=(Math.max(-.17,Math.min(.17,-player.vx/speed*.13))-shipTilt)*(1-Math.exp(-4*dt));shipThrust+=((keys.jump?1:0)-shipThrust)*(1-Math.exp(-(inverted?3.4:7)*dt))}
 else{player.vx=desiredVx;shipTilt=0;shipThrust=0}
 if(shipEntry>0)shipEntry=Math.max(0,shipEntry-dt);shipFuelPulse+=dt*18;
 if(!inShip&&keys.jump&&!jumpHeld&&player.onGround){player.vy=(small?-460:-660)*(inverted?-1:1);player.onGround=false;player.stretch=.17;sound(small?570:460,.1);burst(player.x+player.w/2,player.y+player.h,7)}
@@ -128,13 +128,15 @@ for(const coin of coins){if(!coin.taken&&overlap(player,{x:coin.x-14,y:coin.y-14
 const oldX=player.x;
 player.x=Math.max(0,Math.min(worldW-player.w,player.x+player.vx*dt));
 for(const p of solids){
- if(!overlap(player,p))continue;
- if(player.vx>0)player.x=p.x-player.w;
- else if(player.vx<0)player.x=p.x+p.w;
- player.vx=0;
+ // Bloquear horizontalmente solo si el cuerpo ya estaba a la altura del obstáculo.
+ // Así, al invertir gravedad, la nave no queda pegada a los laterales por un solapamiento vertical.
+ const verticallyInside=player.y<p.y+p.h-.5&&player.y+player.h>p.y+.5;
+ if(!verticallyInside)continue;
+ if(player.vx>0&&oldX+player.w<=p.x+2&&player.x+player.w>p.x){player.x=p.x-player.w;player.vx=0}
+ else if(player.vx<0&&oldX>=p.x+p.w-2&&player.x<p.x+p.w){player.x=p.x+p.w;player.vx=0}
 }
 const oldY=player.y,wasGrounded=player.onGround;
-const thrust=inShip?shipThrust*(inverted?2450:-2600):0;const gravity=inShip&&inverted?-1850:(inverted?-1700:1700);player.vy=Math.max(-950,Math.min(950,player.vy+(gravity+thrust)*dt));
+const thrust=inShip?shipThrust*(inverted?2700:-2600):0;const gravity=inShip&&inverted?-1850:(inverted?-1700:1700);player.vy=Math.max(-950,Math.min(950,player.vy+(gravity+thrust)*dt));
 player.y+=player.vy*dt;player.onGround=false;
 // El techo del laboratorio es un límite físico, también tras transformar a Dany.
 if(currentLevel==="lab"&&player.y<16){player.y=16;if(player.vy<0)player.vy=0;if(inverted)player.onGround=true}
