@@ -1,0 +1,19 @@
+{
+  "name": "SHIFTY — Beta",
+  "short_name": "SHIFTY",
+  "description": "Juego de plataformas geométrico SHIFTY",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#101827",
+  "theme_color": "#192347",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
