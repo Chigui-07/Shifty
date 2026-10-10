@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SHIFTY · Prototipo 0.22</title>
+<title>SHIFTY · Prototipo 0.23</title>
 <style>
 :root{font-family:system-ui,Segoe UI,sans-serif;color:#f1f6ff;background:#101827}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:18px}
@@ -26,11 +26,11 @@ kbd{background:#344661;border-radius:5px;padding:2px 6px}button{font:inherit;col
 @keyframes bob{50%{transform:translateY(-9px)}}.level-tile{border:2px solid #8fb8ed;border-radius:14px;padding:16px;width:100%;background:#29486d;cursor:pointer}
 </style></head>
 <body><main>
-<header><div><h1>SHIFTY <small>0.22</small></h1><small>Prototipo jugable · Dany</small></div><button id="pauseBtn">⏸ Pausa (Esc)</button> <button id="reset">↻ Reiniciar nivel</button></header>
+<header><div><h1>SHIFTY <small>0.23</small></h1><small>Prototipo jugable · Dany</small></div><button id="pauseBtn">⏸ Pausa (Esc)</button> <button id="reset">↻ Reiniciar nivel</button></header>
 <section class="panel"><div class="hud"><span id="attempts">Intentos: 1</span><span id="status">Recoge la poción y llega a la bandera ✦</span><span id="gravityState" style="display:none">⬇ Gravedad normal</span><span id="inventoryHud" style="display:none">🧪 Mini: 0 · Normal</span><span id="coinsHud" style="display:none">🪙 0/3</span><span id="progress">0%</span><span id="time">00:00</span></div>
 <div id="inventoryBar" class="inventory-bar" aria-label="Inventario de pociones"><div id="miniSlot" class="inventory-slot">🟢 Mini <strong>0</strong> <small>Q</small></div><div id="gravitySlot" class="inventory-slot">🟡 Gravedad <strong>0</strong> <small>F</small></div><div id="shipSlot" class="inventory-slot">🩷 Nave <strong>0</strong> <small>G</small></div><div id="normalSlot" class="inventory-slot">⚪ Normal <strong>0</strong> <small>H</small></div></div><div class="progress-track" aria-label="Progreso del nivel"><div id="progressFill" class="progress-fill"></div></div><div class="game">
-<div class="screen active" id="homeScreen"><div class="screen-content"><h2>SHIFTY</h2><div class="mascot"><span class="smile"></span></div><p>¡Bienvenido al prototipo!</p><button class="menu-btn" id="playBtn">▶ JUGAR</button><small>Versión 0.22 · Desarrollo</small></div></div>
-<div class="screen" id="levelsScreen"><div class="screen-content"><h3>Seleccionar nivel</h3><button class="level-tile" id="firstBtn"><strong>⭐ Nivel 1 · Primeros pasos</strong><p>Aprende a moverte, saltar y evitar obstáculos</p></button><button class="level-tile" id="labBtn"><strong>🧪 Laboratorio de pruebas</strong><p>Seis pociones de contacto · Gris solo retira vehículos · Monedas</p></button><button class="menu-btn" id="levelsBack">← Volver</button></div></div>
+<div class="screen active" id="homeScreen"><div class="screen-content"><h2>SHIFTY</h2><div class="mascot"><span class="smile"></span></div><p>¡Bienvenido al prototipo!</p><button class="menu-btn" id="playBtn">▶ JUGAR</button><small>Versión 0.23 · Desarrollo</small></div></div>
+<div class="screen" id="levelsScreen"><div class="screen-content"><h3>Seleccionar nivel</h3><button class="level-tile" id="firstBtn"><strong>⭐ Nivel 1 · Primeros pasos</strong><p>Aprende a moverte, saltar y evitar obstáculos</p></button><button class="level-tile" id="labBtn"><strong>🧪 Laboratorio de pruebas</strong><p>Pociones · Propulsores ↑↓ · Sierras móviles · Monedas</p></button><button class="menu-btn" id="levelsBack">← Volver</button></div></div>
 <div class="screen" id="winScreen"><div class="screen-content"><h3>🏁 ¡NIVEL COMPLETADO!</h3><p id="winStats">¡Buen trabajo!</p><button class="menu-btn" id="retryWinBtn">↻ Volver a jugar</button><button class="menu-btn" id="levelsWinBtn">☰ Selección de niveles</button><button class="menu-btn" id="homeWinBtn">⌂ Menú principal</button></div></div>
 <div class="screen" id="pauseScreen"><div class="screen-content"><h3>⏸ PAUSA</h3><button class="menu-btn" id="resumeBtn">▶ Continuar</button><button class="menu-btn" id="restartBtn">↻ Reiniciar</button><button class="menu-btn" id="exitBtn">⌂ Menú principal</button></div></div>
 <canvas id="game" width="960" height="540" aria-label="Nivel de plataformas SHIFTY"></canvas>
@@ -50,6 +50,9 @@ const labCoins=[{x:325,y:331,taken:false},{x:840,y:260,taken:false},{x:2150,y:32
 let coins=[];
 const labPotions=[{x:220,y:groundY-38,type:"mini",taken:false},{x:550,y:groundY-38,type:"gravity",taken:false},{x:760,y:groundY-38,type:"ship",taken:false},{x:895,y:groundY-38,type:"vehicleOff",taken:false},{x:1240,y:groundY-38,type:"big",taken:false},{x:1510,y:groundY-38,type:"gravityNormal",taken:false},{x:1810,y:groundY-38,type:"vehicleOff",taken:false},{x:380,y:62,type:"gravityNormal",taken:false},{x:700,y:62,type:"ship",taken:false},{x:1040,y:62,type:"vehicleOff",taken:false},{x:1320,y:62,type:"big",taken:false},{x:1650,y:62,type:"gravityNormal",taken:false},{x:1980,y:62,type:"mini",taken:false},{x:2320,y:62,type:"gravityNormal",taken:false}];
 const labTunnels=[{x:1010,y:groundY-56,w:105,h:18}];
+const labBoosters=[{x:515,y:groundY-14,w:65,h:14,dir:-1},{x:1460,y:groundY-14,w:65,h:14,dir:-1},{x:840,y:175,w:68,h:15,dir:1},{x:2050,y:195,w:68,h:15,dir:1}];
+const labSaws=[{x:1270,y:250,r:17,range:54,speed:1.8},{x:2140,y:275,r:20,range:65,speed:1.4}];
+let boosterCooldown=0;
 const labHazards=[{x:690,y:442,w:38,h:24},{x:1175,y:442,w:38,h:24},{x:1615,y:442,w:38,h:24},{x:2240,y:442,w:38,h:24}];
 const officialPlatforms=[{x:0,y:groundY,w:530,h:80},{x:625,y:groundY,w:435,h:80},{x:1155,y:groundY,w:450,h:80},{x:1700,y:groundY,w:820,h:80},{x:360,y:385,w:145,h:20},{x:800,y:370,w:145,h:20},{x:1320,y:365,w:155,h:20},{x:1880,y:380,w:160,h:20}];
 const officialHazards=[{x:920,y:442,w:35,h:24},{x:1420,y:442,w:35,h:24},{x:2050,y:442,w:35,h:24}];
@@ -60,7 +63,7 @@ function sound(freq=440,duration=.09,type="sine"){if(!soundEnabled)return;try{au
 document.querySelector("#soundBtn").onclick=()=>{soundEnabled=!soundEnabled;document.querySelector("#soundBtn").textContent=soundEnabled?"🔊 Sonido":"🔇 Silenciado";document.querySelector("#soundBtn").setAttribute("aria-pressed",String(soundEnabled));if(soundEnabled)sound(650)};
 let scene="home",attempts=1,elapsed=0,won=false,camera=0,last=performance.now(),jumpHeld=false,emote="",emoteTimer=0,particles=[],smallCount=0,gravityCount=0,inverted=false,small=false,dying=false,deathTimer=0,deathX=0,deathY=0,deathParticles=[];
 const player={x:64,y:groundY-70,w:55,h:70,vx:0,vy:0,onGround:false,anim:0,land:0,blink:0,blinkClock:0,dustClock:0,stretch:0};
-function reset(count=true){transformationFx=null;shipCount=0;normalCount=0;inShip=false;shipEntry=0;shipFuelPulse=0;shipTilt=0;shipThrust=0;if(count)attempts++;dying=false;deathTimer=0;deathParticles=[];small=false;smallCount=0;gravityCount=0;inverted=false;updateInventory();potions.forEach(p=>p.taken=false);coins.forEach(p=>p.taken=false);coinsHud.textContent="🪙 0/"+coins.length;player.h=70;player.w=55;Object.assign(player,{x:64,y:groundY-70,vx:0,vy:0,onGround:false,anim:0,land:0,blink:0,blinkClock:0,dustClock:0,stretch:0});camera=0;elapsed=0;won=false;emote="";emoteTimer=0;particles=[];attemptsEl.textContent="Intentos: "+attempts;progressEl.textContent="0%";progressFill.style.width="0%";statusEl.textContent=currentLevel==="first"?"Nivel 1 · Primeros pasos · ¡Llega a la meta!":"Laboratorio · Toca las pociones para transformarte";menu.classList.remove("show");}
+function reset(count=true){boosterCooldown=0;transformationFx=null;shipCount=0;normalCount=0;inShip=false;shipEntry=0;shipFuelPulse=0;shipTilt=0;shipThrust=0;if(count)attempts++;dying=false;deathTimer=0;deathParticles=[];small=false;smallCount=0;gravityCount=0;inverted=false;updateInventory();potions.forEach(p=>p.taken=false);coins.forEach(p=>p.taken=false);coinsHud.textContent="🪙 0/"+coins.length;player.h=70;player.w=55;Object.assign(player,{x:64,y:groundY-70,vx:0,vy:0,onGround:false,anim:0,land:0,blink:0,blinkClock:0,dustClock:0,stretch:0});camera=0;elapsed=0;won=false;emote="";emoteTimer=0;particles=[];attemptsEl.textContent="Intentos: "+attempts;progressEl.textContent="0%";progressFill.style.width="0%";statusEl.textContent=currentLevel==="first"?"Nivel 1 · Primeros pasos · ¡Llega a la meta!":"Laboratorio · Toca las pociones para transformarte";menu.classList.remove("show");}
 function showScene(next){
 scene=next;for(const [id,s] of [["homeScreen","home"],["levelsScreen","levels"],["pauseScreen","pause"],["winScreen","win"]])document.getElementById(id).classList.toggle("active",s===next);
 keys.left=keys.right=keys.jump=false;jumpHeld=false;menu.classList.remove("show");
@@ -150,9 +153,20 @@ for(const p of solids){
  else if(player.vx>=0&&oldX+player.w<=p.x+4){player.x=p.x-player.w}
  else if(player.vx<=0&&oldX>=p.x+p.w-4){player.x=p.x+p.w}
 }
+if(currentLevel==="lab"){
+ boosterCooldown=Math.max(0,boosterCooldown-dt);
+ if(boosterCooldown===0){
+  for(const pad of labBoosters){if(overlap(player,{x:pad.x,y:pad.y-5,w:pad.w,h:pad.h+10})){
+   player.vy=pad.dir*(inShip?790:930);player.onGround=false;boosterCooldown=.55;player.stretch=.22;
+   sound(pad.dir<0?960:290,.2,"sawtooth");burst(player.x+player.w/2,player.y+player.h/2,18);
+   statusEl.textContent=pad.dir<0?"¡Propulsor azul! Salto potente hacia arriba":"¡Propulsor naranja! Descenso rápido";
+   break;
+  }}
+ }
+}
 const progress=Math.min(99,Math.max(0,Math.floor(((player.x-64)/(worldW-85-64))*100)));
 progressEl.textContent=progress+"%";progressFill.style.width=progress+"%";
-if(player.y>H+130||player.y+player.h< -100||hazards.some(h=>overlap(player,h))){die();return}
+if(player.y>H+130||player.y+player.h< -100||hazards.some(h=>overlap(player,h))||(currentLevel==="lab"&&labSaws.some(s=>{const sx=s.x+Math.sin(elapsed*s.speed)*s.range,sy=s.y;const px=Math.max(player.x,Math.min(sx,player.x+player.w)),py=Math.max(player.y,Math.min(sy,player.y+player.h));return (px-sx)**2+(py-sy)**2<s.r*s.r}))){die();return}
 if(player.x+player.w>=worldW-85&&player.onGround){won=true;sound(900,.35,"triangle");progressEl.textContent="100%";progressFill.style.width="100%";document.querySelector("#winStats").textContent=(currentLevel==="first"?"Nivel 1 · ":"Laboratorio · ")+"Tiempo: "+timeEl.textContent+" · Intentos: "+attempts+(currentLevel==="lab"?" · Monedas: "+coins.filter(v=>v.taken).length+"/"+coins.length:"");statusEl.textContent="¡Nivel completado! 🎉";burst(player.x+28,player.y,40);showScene("win")}
 player.anim+=dt*(player.onGround?(Math.abs(player.vx)>0?Math.abs(player.vx)/24:2):2);
 player.land=Math.max(0,player.land-dt);player.stretch=Math.max(0,player.stretch-dt);
@@ -210,10 +224,14 @@ if(currentLevel==="lab"&&inverted){ctx.save();ctx.fillStyle="#ffdf5533";ctx.fill
 ctx.save();ctx.translate(-camera,0);
 if(currentLevel==="lab")roundRect(0,-24,worldW,40,0,"#53637c","#2c3850");
 for(const p of platforms){roundRect(p.x,p.y,p.w,p.h,6,"#354d65","#26384d");rect(p.x,p.y,p.w,9,"#66d2a0")}
-if(currentLevel==="lab"){const signs=[{x:125,y:410,text:"MINI MORADA",color:"#bd83f5"},{x:500,y:260,text:"TOCA AMARILLA",color:"#ffdf55"},{x:735,y:210,text:"TOCA NAVE ROSA",color:"#ff83c8"},{x:885,y:210,text:"GRIS: SIN NAVE",color:"#c5cbd4"},{x:1030,y:255,text:"TÚNEL MINI",color:"#bd83f5"},{x:1210,y:215,text:"VERDE: GRANDE",color:"#a6f58a"},{x:1480,y:215,text:"CELESTE: GRAVEDAD NORMAL",color:"#8ceaff"},{x:390,y:105,text:"TECHO: POCIONES DE SALIDA",color:"#8ceaff"},{x:1660,y:215,text:"COMBINA PODERES",color:"#ffe89d"}];for(const s of signs){ctx.font="bold 17px system-ui";ctx.fillStyle=s.color;ctx.fillText(s.text,s.x,s.y);ctx.fillStyle=s.color+"55";ctx.fillRect(s.x,s.y+6,110,3)}}
+if(currentLevel==="lab"){const signs=[{x:125,y:410,text:"MINI MORADA",color:"#bd83f5"},{x:500,y:260,text:"TOCA AMARILLA",color:"#ffdf55"},{x:735,y:210,text:"TOCA NAVE ROSA",color:"#ff83c8"},{x:885,y:210,text:"GRIS: SIN NAVE",color:"#c5cbd4"},{x:1030,y:255,text:"TÚNEL MINI",color:"#bd83f5"},{x:1210,y:215,text:"VERDE: GRANDE",color:"#a6f58a"},{x:1480,y:215,text:"CELESTE: GRAVEDAD NORMAL",color:"#8ceaff"},{x:390,y:105,text:"TECHO: POCIONES DE SALIDA",color:"#8ceaff"},{x:1660,y:215,text:"COMBINA PODERES",color:"#ffe89d"},{x:520,y:405,text:"AZUL: IMPULSO ↑",color:"#52cfff"},{x:800,y:125,text:"NARANJA: CAÍDA ↓",color:"#ff9856"},{x:2030,y:140,text:"CUIDADO: SIERRA",color:"#ff7777"}];for(const s of signs){ctx.font="bold 17px system-ui";ctx.fillStyle=s.color;ctx.fillText(s.text,s.x,s.y);ctx.fillStyle=s.color+"55";ctx.fillRect(s.x,s.y+6,110,3)}}
 for(const t of tunnels){roundRect(t.x,t.y,t.w,t.h,3,"#627e9c","#253b51");rect(t.x+4,t.y+5,t.w-8,7,"#96b7d6")}
 for(const coin of coins){if(!coin.taken){const cy=coin.y+Math.sin(elapsed*4+coin.x)*4;ctx.save();ctx.translate(coin.x,cy);ctx.scale(.3+.7*Math.abs(Math.cos(elapsed*3+coin.x)),1);ctx.beginPath();ctx.arc(0,0,13,0,Math.PI*2);ctx.fillStyle="#ffd24d";ctx.fill();ctx.lineWidth=3;ctx.strokeStyle="#b77c13";ctx.stroke();ctx.fillStyle="#fff0a5";ctx.fillRect(-2,-8,4,16);ctx.restore()}}
 for(const p of potions){if(!p.taken){const style={mini:["#bd83f5","#6d39a1","#4e207a","↓"],big:["#a6f58a","#397c38","#26672d","↑"],gravity:["#ffdf55","#9b7100","#805600","↑"],gravityNormal:["#8ceaff","#28628b","#154866","↓"],ship:["#ff83c8","#a33170","#7e174e","✦"],vehicleOff:["#c5cbd4","#626b77","#414a57","×"]}[p.type],phase=performance.now()*.0025+p.x*.035,bob=Math.sin(phase)*5,glow=.22+.12*Math.sin(phase*1.6);ctx.save();ctx.translate(0,bob);ctx.fillStyle=style[0];ctx.globalAlpha=glow;ctx.beginPath();ctx.arc(p.x+8,p.y+2,23,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;roundRect(p.x-3,p.y-9,22,27,6,style[0],style[1]);rect(p.x+3,p.y-14,10,6,"#e7ffe1");ctx.fillStyle=style[2];ctx.font="bold 18px system-ui";ctx.fillText(style[3],p.x+1,p.y+11);ctx.restore()}}
+if(currentLevel==="lab"){
+ for(const pad of labBoosters){const up=pad.dir<0;ctx.save();ctx.fillStyle=up?"#52cfff":"#ff9856";ctx.shadowColor=ctx.fillStyle;ctx.shadowBlur=14;roundRect(pad.x,pad.y,pad.w,pad.h,5,ctx.fillStyle,up?"#145e99":"#a64d24");ctx.shadowBlur=0;ctx.fillStyle="#173354";ctx.font="bold 18px system-ui";ctx.fillText(up?"↑↑":"↓↓",pad.x+16,pad.y+13);ctx.restore()}
+ for(const s of labSaws){const x=s.x+Math.sin(elapsed*s.speed)*s.range,y=s.y;ctx.save();ctx.translate(x,y);ctx.rotate(elapsed*4);ctx.fillStyle="#c9d3e3";for(let i=0;i<10;i++){const a=i*Math.PI/5;ctx.beginPath();ctx.moveTo(Math.cos(a-.17)*s.r*.78,Math.sin(a-.17)*s.r*.78);ctx.lineTo(Math.cos(a)*s.r*1.32,Math.sin(a)*s.r*1.32);ctx.lineTo(Math.cos(a+.17)*s.r*.78,Math.sin(a+.17)*s.r*.78);ctx.fill()}ctx.beginPath();ctx.arc(0,0,s.r*.8,0,Math.PI*2);ctx.fillStyle="#7186a3";ctx.fill();ctx.beginPath();ctx.arc(0,0,5,0,Math.PI*2);ctx.fillStyle="#25384f";ctx.fill();ctx.restore()}
+}
 for(const h of hazards){ctx.fillStyle="#ff7777";ctx.beginPath();ctx.moveTo(h.x,h.y+h.h);ctx.lineTo(h.x+h.w/2,h.y);ctx.lineTo(h.x+h.w,h.y+h.h);ctx.closePath();ctx.fill()}
 rect(worldW-78,groundY-128,6,128,"#e8f3ff");ctx.fillStyle="#ffcb57";ctx.beginPath();ctx.moveTo(worldW-72,groundY-127);ctx.lineTo(worldW-14,groundY-107);ctx.lineTo(worldW-72,groundY-88);ctx.fill();
 ctx.restore();
