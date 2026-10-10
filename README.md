@@ -317,3 +317,8 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Se eliminó la restricción que impedía colocar piezas en los primeros 120 píxeles del nivel cerca de Dany. Ahora puede editarse toda la cuadrícula por encima del suelo; si se tapa el inicio, el nivel podría no ser jugable.
 - El usuario reportó que la versión móvil del editor solo mostraba la parte superior. Por decisión expresa, se prioriza terminar y probar el editor de computadora antes de adaptar el editor a teléfono. El juego móvil sigue disponible.
 - Caché PWA renovada a 0.32. No se alteró la versión del motor del juego ni los niveles existentes.
+
+### 2026-10-10 — Editor 0.33: cuadrícula alineada al suelo
+- Corrección del espacio no editable encima del suelo reportado en capturas. La cuadrícula vertical se calcula desde `groundY=466` hacia arriba en celdas de 40 px; la fila inferior queda en y=426 y las piezas se apoyan exactamente sobre el suelo.
+- Antes, la cuadrícula partía de y=0 y su última celda (440–480) era rechazada porque cruzaba el suelo. Se corrigió tanto la visualización de las líneas como la conversión de clic a celda.
+- Se actualizó la caché PWA a 0.33; el resto del editor y del juego no cambia.
