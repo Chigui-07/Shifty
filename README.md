@@ -203,3 +203,10 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Combinaciones simultáneas: tamaño Mini + gravedad invertida + nave; con Mini, la nave es más pequeña y se desplaza más rápido.
 - Inventario, señales y controles actualizados. Nivel 1 sin cambios de geometría o contenido.
 - Pendiente: probar visualmente la animación y la física de vuelo/colisiones en navegador, en especial las combinaciones triples.
+
+### 2026-10-09 — SHIFTY 0.16: Nave rosa permanente y Normal gris
+- La Poción Nave cambia de celeste a rosa. Activarla con G transforma permanentemente a Dany en piloto hasta consumir una Poción Normal. No se puede guardar ni desactivar la nave pulsando G otra vez.
+- Nueva Poción Normal gris, con ejemplares en Laboratorio (x=895 y x=1810), recogida en inventario y activación con H o botón táctil. Restablece nave desactivada, tamaño normal y gravedad normal simultáneamente.
+- Antes de crecer, comprueba el espacio disponible para evitar atravesar plataformas o techo. El reinicio también restaura todas las transformaciones.
+- Inventario y señales actualizados. La nave mantiene propulsores con Saltar, velocidad superior en Mini y controles horizontales invertidos bajo gravedad invertida.
+- Nivel 1 sigue congelado. Pendiente: pruebas manuales en navegador de las combinaciones y retorno a Normal, especialmente desde el techo.
