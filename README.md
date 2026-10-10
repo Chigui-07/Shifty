@@ -210,3 +210,10 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - Antes de crecer, comprueba el espacio disponible para evitar atravesar plataformas o techo. El reinicio también restaura todas las transformaciones.
 - Inventario y señales actualizados. La nave mantiene propulsores con Saltar, velocidad superior en Mini y controles horizontales invertidos bajo gravedad invertida.
 - Nivel 1 sigue congelado. Pendiente: pruebas manuales en navegador de las combinaciones y retorno a Normal, especialmente desde el techo.
+
+### 2026-10-09 — SHIFTY 0.17: corrección de nave invertida
+- Corregida la colisión vertical: la nave debe detenerse en la cara superior o inferior de plataformas según su dirección vertical, incluso cuando los propulsores se oponen a la gravedad invertida.
+- El techo sólido del Laboratorio limita el movimiento hacia arriba independientemente de la orientación de gravedad.
+- Los controles horizontales conservan su sentido natural en nave invertida: izquierda va a la izquierda y derecha a la derecha. La sensación diferente proviene de la orientación visual y de la dinámica vertical.
+- Se conserva Nivel 1 y la combinación de Mini + Nave + Gravedad invertida.
+- Pendiente: validar en navegador la colisión a velocidad máxima y el aterrizaje desde ambos lados.
