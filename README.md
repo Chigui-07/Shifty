@@ -238,3 +238,11 @@ Abrir [index.html](./index.html) en un navegador moderno. No requiere instalar n
 - La nave invertida responde algo más rápido horizontalmente sin perder la inercia; propulsores invertidos ligeramente más fuertes para contrarrestar su peso.
 - Izquierda y derecha mantienen su sentido normal. Nivel 1 sin cambios.
 - Pendiente: verificar en navegador, en particular nave + gravedad invertida y triple combinación con Mini.
+
+### 2026-10-09 — SHIFTY 0.21: seis pociones y tres estados independientes
+- Morada: Dany pequeño. Verde: Dany grande (comprueba espacio antes de crecer).
+- Amarilla: gravedad invertida. Celeste: gravedad normal.
+- Rosa: activa la nave. Gris: retira exclusivamente el vehículo, sin modificar tamaño ni gravedad.
+- Todas se activan al contacto; no hay inventario ni teclas para transformarse. Las transformaciones se combinan libremente.
+- Añadidas botellas verde y celeste al Laboratorio y actualizados colores, letreros e instrucciones. Nivel 1 permanece intacto.
+- Pendiente: validar en navegador combinaciones, retorno a tamaño grande y posiciones de botellas.
